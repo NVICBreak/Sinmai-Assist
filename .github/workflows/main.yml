@@ -15,8 +15,6 @@ jobs:
     env:
       MELONLOADER_REPO: https://api.github.com/repos/LavaGang/MelonLoader/releases/latest
       MELONLOADER_ASSET_NAME: MelonLoader.x64.zip
-      OUTPUT_URL: ${{ secrets.OUTPUT_URL }}
-      OUTPUT_FILE: Output.7z
 
     steps:
     - name: Checkout code
@@ -28,8 +26,6 @@ jobs:
                 mkdir cache
                 Invoke-WebRequest -Uri https://github.com/LavaGang/MelonLoader/releases/download/v0.6.5/MelonLoader.x64.zip -OutFile "$(Get-Location)\cache\MelonLoader.x64.zip"        
                 7z x "$(Get-Location)\cache\MelonLoader.x64.zip" -o"$(Get-Location)\Out"     
-                Invoke-WebRequest -Uri ${{ secrets.OUTPUT_URL }} -OutFile "$(Get-Location)\cache\Output.7z"
-                7z x "$(Get-Location)\cache\Output.7z" -o"$(Get-Location)\Output"
                 if (-not $(git --version 2>$null)) {
                     $commitHash = "NOT SET"
                 } else {
