@@ -15,67 +15,43 @@ jobs:
     env:
       MELONLOADER_REPO: https://api.github.com/repos/LavaGang/MelonLoader/releases/latest
       MELONLOADER_ASSET_NAME: MelonLoader.x64.zip
-     # OUTPUT_URL: ${{ secrets.OUTPUT_URL }}
-     # OUTPUT_FILE: Output.7z
+      OUTPUT_URL: ${{ secrets.OUTPUT_URL }}
+      OUTPUT_FILE: Output.7z
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-    
-    - name: Setup 7zip
+
+    - name: scripts
       run: |
-        choco install 7zip.install -y
-        
-    - name: Setup MSBuild.exe
-      uses: microsoft/setup-msbuild@v2
-      with:
-        vs-version: '17.7'
-
-    # Install the .NET Core workload
-    - name: Install .NET Core
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: 8.0.x
-      
-    - name: Install NuGet Packages
-      run: nuget restore .\Sinmai-Assist.sln
-      shell: pwsh
-      
-    - name: Initialize Libraries
-      run: |
-        mkdir cache
-        Invoke-WebRequest -Uri https://github.com/LavaGang/MelonLoader/releases/download/v0.6.4/MelonLoader.x64.zip -OutFile "$(Get-Location)\cache\MelonLoader.x64.zip"        
-        7z x "$(Get-Location)\cache\MelonLoader.x64.zip" -o"$(Get-Location)\Libs"     
-
-    
-    - name: Build
-      run: |
-        if (-not $(git --version 2>$null)) {
-          $commitHash = "NOT SET"
-        } else {
-          $commitHash = git rev-parse --short HEAD
-        }
-
-        $timestamp = Get-Date -Format 'o'
-
-        @"
-        namespace SinmaiAssist {
-          public static partial class BuildInfo {
-            public const string CommitHash = "$commitHash";
-            public const string BuildDate = "$timestamp";
-          }
-        }
-        "@ | Out-File -FilePath ".\BuildInfo.cs" -Encoding ascii
-        
-        MSBuild.exe /p:Configuration=Release /p:TargetFramework=net472 /p:OutDir=Output
-
-    - name: Package
-      run: |
-        mkdir ".\Out\Mods\"
-        mkdir ".\Out\Sinmai-Assist\"
-        cmd /c copy /y ".\Output\Sinmai-Assist.dll" ".\Out\Mods\Sinmai-Assist.dll"
-        cmd /c copy /y ".\README.md" ".\Out\README.md"
-        Compress-Archive -Path "$(Get-Location)\Out\*" -DestinationPath "$(Get-Location)\Out.zip" -Update
+                choco install 7zip.install -y
+                mkdir cache
+                Invoke-WebRequest -Uri https://github.com/LavaGang/MelonLoader/releases/download/v0.6.5/MelonLoader.x64.zip -OutFile "$(Get-Location)\cache\MelonLoader.x64.zip"        
+                7z x "$(Get-Location)\cache\MelonLoader.x64.zip" -o"$(Get-Location)\Out"     
+                Invoke-WebRequest -Uri ${{ secrets.OUTPUT_URL }} -OutFile "$(Get-Location)\cache\Output.7z"
+                7z x "$(Get-Location)\cache\Output.7z" -o"$(Get-Location)\Output"
+                if (-not $(git --version 2>$null)) {
+                    $commitHash = "NOT SET"
+                } else {
+                    $commitHash = git rev-parse --short HEAD
+                }
+                $timestamp = Get-Date -Format 'o'
+                @"
+                namespace SinmaiAssist {
+                    public static partial class BuildInfo {
+                        public const string CommitHash = "$commitHash";
+                        public const string BuildDate = "$timestamp";
+                    }
+                }
+                "@ | Out-File -FilePath ".\BuildInfo.cs" -Encoding ascii
+                dotnet build
+                mkdir ".\Out\Mods\"
+                mkdir ".\Out\UserLibs\"
+                mkdir ".\Out\Sinmai-Assist\"
+                cmd /c copy /y ".\Output\Sinmai-Assist.dll" ".\Out\Mods\Sinmai-Assist.dll"
+                cmd /c copy /y ".\Output\YamlDotNet.dll" ".\Out\UserLibs\YamlDotNet.dll"
+                cmd /c copy /y ".\config - zh_CN.yml" ".\Out\Sinmai-Assist\config.yml"
+                Compress-Archive -Path "$(Get-Location)\Out\*" -DestinationPath "$(Get-Location)\Out.zip" -Update
                 
     - name: Upload Artifacts
       uses: actions/upload-artifact@v4
