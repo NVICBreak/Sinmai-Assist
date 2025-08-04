@@ -23,6 +23,9 @@ jobs:
     - name: Setup dotnet
       uses: actions/setup-dotnet@v4
 
+    - name: Setup nuget
+      uses: nuget/setup-nuget@v2
+
     - name: scripts
       run: |
                 choco install 7zip.install -y
