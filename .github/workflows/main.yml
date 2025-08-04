@@ -25,6 +25,7 @@ jobs:
 
     - name: Setup nuget
       uses: nuget/setup-nuget@v2
+      run: dotnet restore
 
     - name: scripts
       run: |
