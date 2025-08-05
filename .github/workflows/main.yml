@@ -22,6 +22,8 @@ jobs:
 
     - name: Setup .NET
       uses: actions/setup-dotnet@v3
+      with:
+        dotnet-version: '4.7.2'  # 替换成你的 .NET 版本
 
     - name: Restore NuGet packages
       run: dotnet restore .\Sinmai-Assist.sln
