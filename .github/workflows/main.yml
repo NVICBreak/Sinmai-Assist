@@ -20,11 +20,11 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Setup dotnet
-      uses: actions/setup-dotnet@v4
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
 
-    - name: Setup nuget
-      run: dotnet restore
+    - name: Restore NuGet packages
+      run: dotnet restore .\Sinmai-Assist.sln
 
     - name: scripts
       run: |
@@ -46,7 +46,7 @@ jobs:
                     }
                 }
                 "@ | Out-File -FilePath ".\BuildInfo.cs" -Encoding ascii
-                dotnet build
+                dotnet build --no-restore
                 mkdir ".\Out\Mods\"
                 mkdir ".\Out\UserLibs\"
                 mkdir ".\Out\Sinmai-Assist\"
