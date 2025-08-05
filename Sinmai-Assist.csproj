@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="packages\ILMerge.Fody.1.24.0\build\ILMerge.Fody.props" Condition="Exists('packages\ILMerge.Fody.1.24.0\build\ILMerge.Fody.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
@@ -43,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>Libs\0Harmony.dll</HintPath>
+      <HintPath>Output\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="0Harmony, Version=2.10.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -62,14 +62,14 @@
       <HintPath>Libs\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="ChimeLib.NET">
-      <HintPath>Libs\ChimeLib.NET.dll</HintPath>
+      <HintPath>Output\ChimeLib.NET.dll</HintPath>
     </Reference>
     <Reference Include="ChimeLib.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\ChimeLib.NET.dll</HintPath>
     </Reference>
     <Reference Include="cscompmgd">
-      <HintPath>Libs\cscompmgd.dll</HintPath>
+      <HintPath>Output\cscompmgd.dll</HintPath>
     </Reference>
     <Reference Include="CustomMarshalers">
       <HintPath>Output\CustomMarshalers.dll</HintPath>
@@ -96,7 +96,7 @@
       <HintPath>Libs\mscorlib.dll</HintPath>
     </Reference>
     <Reference Include="SMDiagnostics">
-      <HintPath>Libs\SMDiagnostics.dll</HintPath>
+      <HintPath>Output\SMDiagnostics.dll</HintPath>
     </Reference>
     <Reference Include="Swan.Lite, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Unosquare.Swan.Lite.3.1.0\lib\net461\Swan.Lite.dll</HintPath>
@@ -215,7 +215,7 @@
       <HintPath>Output\System.ServiceModel.Discovery.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel.Internals">
-      <HintPath>Libs\System.ServiceModel.Internals.dll</HintPath>
+      <HintPath>Output\System.ServiceModel.Internals.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel.Routing">
       <HintPath>Output\System.ServiceModel.Routing.dll</HintPath>
