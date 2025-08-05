@@ -43,7 +43,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="0Harmony">
-      <HintPath>Output\0Harmony.dll</HintPath>
+      <HintPath>Libs\0Harmony.dll</HintPath>
     </Reference>
     <Reference Include="0Harmony, Version=2.10.1.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -62,14 +62,14 @@
       <HintPath>Libs\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="ChimeLib.NET">
-      <HintPath>Output\ChimeLib.NET.dll</HintPath>
+      <HintPath>Libs\ChimeLib.NET.dll</HintPath>
     </Reference>
     <Reference Include="ChimeLib.NET, Version=1.0.0.0, Culture=neutral, processorArchitecture=AMD64">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>Libs\ChimeLib.NET.dll</HintPath>
     </Reference>
     <Reference Include="cscompmgd">
-      <HintPath>Output\cscompmgd.dll</HintPath>
+      <HintPath>Libs\cscompmgd.dll</HintPath>
     </Reference>
     <Reference Include="CustomMarshalers">
       <HintPath>Output\CustomMarshalers.dll</HintPath>
@@ -96,7 +96,7 @@
       <HintPath>Libs\mscorlib.dll</HintPath>
     </Reference>
     <Reference Include="SMDiagnostics">
-      <HintPath>Output\SMDiagnostics.dll</HintPath>
+      <HintPath>Libs\SMDiagnostics.dll</HintPath>
     </Reference>
     <Reference Include="Swan.Lite, Version=3.1.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>packages\Unosquare.Swan.Lite.3.1.0\lib\net461\Swan.Lite.dll</HintPath>
@@ -215,7 +215,7 @@
       <HintPath>Output\System.ServiceModel.Discovery.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel.Internals">
-      <HintPath>Output\System.ServiceModel.Internals.dll</HintPath>
+      <HintPath>Libs\System.ServiceModel.Internals.dll</HintPath>
     </Reference>
     <Reference Include="System.ServiceModel.Routing">
       <HintPath>Output\System.ServiceModel.Routing.dll</HintPath>
