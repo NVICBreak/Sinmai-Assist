@@ -51,7 +51,7 @@ jobs:
             }
         }
         "@ | Out-File -FilePath ".\BuildInfo.cs" -Encoding ascii
-        dotnet build --no-restore
+        dotnet build --no-restore /p:OutDir=Output
         mkdir ".\Out\Mods\"
         mkdir ".\Out\UserLibs\"
         mkdir ".\Out\Sinmai-Assist\"
